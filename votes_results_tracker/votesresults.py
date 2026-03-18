@@ -26,3 +26,28 @@ def save_the_vote_results():
         writer.writerow(["Candidate\t", "Total Votes"])
         for candidate, count in vote_results.items():
             writer.writerow(f"{candidate}\t", count)
+
+def cast_vote():
+    """Handles the voting logic for 1-5 and 0."""
+    clear_screen()
+    display_candidates()
+    try:
+        choice = int(input("\nEnter your choice from 0 to 5:"))
+
+        if choice == 0:
+            selected = candidates[-1]
+            vote_results[selected] += 1
+            print(f"\n Vote registered for: {selected}")
+        elif 1 <= choice <= 5:
+            selected = candidates[choice -1]
+            vote_results[selected] += 1
+            print(f"\n Vote registered for: {selected}")
+        else:
+            print("\n Invalid choice! Please try again.")
+
+        save_the_vote_results()
+        input("\nPress Enter to return to the main menu...")
+    except ValueError:
+        print("\nInvalid Input! Please enter the correct option as shown")
+        input("\nPress Enter to continue...")
+
