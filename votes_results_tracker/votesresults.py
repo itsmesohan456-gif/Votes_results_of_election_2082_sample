@@ -14,7 +14,7 @@ def display_candidates():
     """Display candidates 1-5, and 0 for None of the above."""
     print("\n--- Candidates for the PM of Nepal--- ")
 
-    for i in range(len(candidates) == 1):
+    for i in range(len(candidates) - 1):
         print(f"{i+1}. {candidates[i]}")
 
     print(f"0. {candidates[-1]}")
@@ -23,9 +23,9 @@ def save_the_vote_results():
     """Saves current counts to the CSV file."""
     with open(FILENAME, mode = 'w', newline = '') as file:
         writer = csv.writer(file)
-        writer.writerow(["Candidate\t", "Total Votes"])
+        writer.writerow(["Candidate", "Total Votes"])
         for candidate, count in vote_results.items():
-            writer.writerow(f"{candidate}\t", count)
+            writer.writerow([candidate, count])
 
 def cast_vote():
     """Handles the voting logic for 1-5 and 0."""
@@ -50,4 +50,38 @@ def cast_vote():
     except ValueError:
         print("\nInvalid Input! Please enter the correct option as shown")
         input("\nPress Enter to continue...")
+def show_vote_results():
+    """Displays the current live vote counts."""
+    clear_screen()
+    print("\n--- Live Vote Counter ---")
+    for candidate, count in vote_results.items():
+        print(f" {candidate}: {count} votes")
+        input("\n Press Enter to return to the main menu...")
 
+def main():
+    """Main Menu Hub"""
+    while  True:
+        clear_screen()
+        print("====================")
+        print("VOTING SYSTEM PORTAL")
+        print("====================")
+        print("1. Cast New Vote")
+        print("2. View Current Vote Results")
+        print("3. Exit the Program")
+
+        menu_choice = input("\nSelect an option from 1, 2 or 3:")
+
+        if menu_choice == '1':
+            cast_vote()
+        elif menu_choice == '2':
+            show_vote_results()
+        elif menu_choice == '3':
+            print(f"Exiting the Program... The Final Vote Results are saved to {FILENAME}.")
+            break
+        else:
+            print("Invalid choice! Please try again.")
+        
+if __name__ == "__main__":
+    main()
+    
+        
