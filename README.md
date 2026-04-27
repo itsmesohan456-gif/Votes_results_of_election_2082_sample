@@ -1,0 +1,3 @@
+# Before you visit this sample project of mine...
+Remind you that this is just a sample work for no serious purposes. This project is not intended to target hurting people's sentiments. 
+I am not an open supporter of any of these politcal people. Hence, don't take it seriously and just enjoy this fun project of mine :).
